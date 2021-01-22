@@ -20,39 +20,15 @@ public class RegisterControllerWithJPA {
     @PostMapping("third/register")
     public ResponseEntity<String> register(@RequestBody User user) {
 
-        /*
-        var user2 = userService.findByUsername("admin");
-        if (user2.isEmpty()) {
-            User user3 = new User();
-            user3.setUsername("admin");
-            user3.setPassword("pwadmin");
-            user3.setIdRole("1");
-            userService.saveUser(user3);
-        }
-        */
-        /*
-        var user2 = userService.findByUsername("admin");
-        if (!user2.isPresent()) {
-            User user3 = new User();
-            user3.setUsername("admin");
-            user3.setPassword("pwadmin");
-            user3.setIdRole("1");
-            userService.saveUser(user3);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }
-        */
-
-
-
         if (user.isEmpty()) {
             return new ResponseEntity<>("You must provide a user name and password.", HttpStatus.BAD_REQUEST);
         } else if (user.usernameIsEmpty()) {
             return new ResponseEntity<>("You must provide a user name.", HttpStatus.BAD_REQUEST);
         } else if (user.passwordIsEmpty()) {
             return new ResponseEntity<>("You must provide a password.", HttpStatus.BAD_REQUEST);
-        } else if (user.idRoleIsEmpty()) {
-          //  user.setIdRole("2");
-            return new ResponseEntity<>("You must provide a role.", HttpStatus.BAD_REQUEST);
+        }
+        if (user.getIdRole()==null){
+            user.setIdRole("2");
         }
         try {
             userService.saveUser(user);

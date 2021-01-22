@@ -17,7 +17,7 @@ public class GetUserController {
     public ResponseEntity<String> findByUsername(@PathVariable("username") String username) {
         var user = userService.findByUsername(username);
         if (!user.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("The user was not found in the database.",HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(user.get().toString(), HttpStatus.OK);
     }

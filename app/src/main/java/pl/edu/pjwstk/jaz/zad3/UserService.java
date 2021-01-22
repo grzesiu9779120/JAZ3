@@ -24,8 +24,6 @@ public class UserService {
     public void saveUser(User user) {
         if (findByUsername(user.getUsername()).isPresent()) {
             throw new EntityExistsException("A user with this name already exists.");
-        } else if (!user.getIdRole().matches("^[2-3]{1}$")) {
-            throw new EntityNotFoundException("Unfortunately, there is no such role.");
         }
         var userEntity = new UserEntity();
         userEntity.setUsername(user.getUsername());
@@ -33,6 +31,13 @@ public class UserService {
         userEntity.setIdRole(Integer.parseInt(user.getIdRole()));
 
         entityManager.persist(userEntity);
+
+        if(findByUsername("admin").isEmpty()){
+            userEntity.setIdRole(1);
+            userEntity.setUsername("admin");
+            userEntity.setPassword("psadmin");
+            entityManager.persist(userEntity);
+        }
     }
 
     public Optional<UserEntity> findByUsername(String username) {
