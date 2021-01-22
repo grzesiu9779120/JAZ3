@@ -1,10 +1,8 @@
 package pl.edu.pjwstk.jaz.zad3;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 
 @Entity
-@Transactional
 @Table(name = "\"user\"")
 public class UserEntity {
     @Id

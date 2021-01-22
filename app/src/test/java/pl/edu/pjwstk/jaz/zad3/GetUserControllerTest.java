@@ -47,6 +47,6 @@ public class GetUserControllerTest {
                 .get("/api/third/getUser/krystian")
                 .then()
                 .statusCode(equalTo(200))
-                .body(equalTo("UserEntity{id=2, username='ala', idRole=2}"));
+                .body(equalTo("UserEntity{id=2, username='krystian', idRole=2}"));
     }
 }

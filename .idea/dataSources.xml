@@ -5,7 +5,7 @@
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://192.168.99.102:5432/jaz</jdbc-url>
+      <jdbc-url>jdbc:postgresql://192.168.99.104:5432/jaz</jdbc-url>
     </data-source>
   </component>
 </project>
