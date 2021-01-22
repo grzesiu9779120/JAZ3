@@ -17,7 +17,7 @@ public class RegisterControllerWithJPA {
         this.userService = userService;
     }
 
-    @PostMapping("third/register")
+    @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody User user) {
 
         if (user.isEmpty()) {

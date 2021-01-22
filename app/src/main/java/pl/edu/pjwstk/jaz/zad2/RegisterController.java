@@ -23,7 +23,7 @@ public class RegisterController {
         return null;
     }
 
-    @PostMapping("/register")
+    @PostMapping("/registerr")
     public void register(@RequestBody RegisterRequest registerRequest) {
 
         Set<String> authorities = new HashSet<>();

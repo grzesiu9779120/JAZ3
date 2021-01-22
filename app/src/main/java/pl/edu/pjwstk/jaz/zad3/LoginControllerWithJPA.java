@@ -23,7 +23,7 @@ public class LoginControllerWithJPA {
         this.userSession = userSession;
     }
 
-    @PostMapping("third/login")
+    @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody User user, HttpServletRequest request) {
         if (user.isEmpty()) {
             return new ResponseEntity<>("You must provide a user name and password.", HttpStatus.BAD_REQUEST);
