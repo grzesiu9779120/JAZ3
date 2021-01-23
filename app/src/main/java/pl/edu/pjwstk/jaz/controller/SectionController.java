@@ -14,9 +14,9 @@ public class SectionController {
 
      private SectionRepository sectionRepository;
 
-    @PostMapping ("/addSection/{name}")
+    @PostMapping ("/addSection")
     public ResponseEntity<String> addSection(@RequestBody Section section){
-    if(sectionRepository.findByName("name").isEmpty()){
+    if(sectionRepository.findByName(section.getName()).isEmpty()){
         sectionRepository.save(section);
         return new ResponseEntity<>("Section created.", HttpStatus.CREATED);
     }

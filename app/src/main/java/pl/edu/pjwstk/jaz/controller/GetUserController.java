@@ -14,13 +14,11 @@ public class GetUserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("third/getUser/{username}")
-    public ResponseEntity<String> findByUsername(@PathVariable("username") String username) {
-        var user = userRepository.findByUsername(username);
-        if (!user.isPresent()) {
-            return new ResponseEntity<>("The user was not found in the database.",HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(user.get().toString(), HttpStatus.OK);
+    @GetMapping("/getUsers")
+    public ResponseEntity<String> findByUsername() {
+        var user = userRepository.findAll();
+
+        return new ResponseEntity<>(user.toString(), HttpStatus.OK);
     }
 
 }

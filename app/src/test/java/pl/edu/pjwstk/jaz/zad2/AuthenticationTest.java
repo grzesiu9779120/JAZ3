@@ -14,6 +14,8 @@ import static io.restassured.RestAssured.given;
 @IntegrationTest
 public class AuthenticationTest {
 
+    /*
+
 
     @BeforeClass
     public static void beforeClass() throws  Exception{
@@ -158,4 +160,7 @@ public class AuthenticationTest {
         .then()
                 .statusCode(HttpStatus.UNAUTHORIZED.value());
     }
+
+
+     */
 }

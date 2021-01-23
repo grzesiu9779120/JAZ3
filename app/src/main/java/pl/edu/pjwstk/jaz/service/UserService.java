@@ -12,16 +12,23 @@ import javax.persistence.EntityManager;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final EntityManager entityManager;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, EntityManager entityManager, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.entityManager = entityManager;
         this.passwordEncoder = passwordEncoder;
     }
 
     public void saveUser(User user) {
+
+        if(userRepository.findByUsername("admin").isEmpty()){
+            User admin = new User();
+            admin.setRole("ROLE_ADMIN");
+            admin.setUsername("admin");
+            admin.setPassword(passwordEncoder.encode("pwadmin"));
+            userRepository.save(admin);
+        }
+
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
             throw new EntityExistsException("A user with this name already exists.");
         }
@@ -30,14 +37,7 @@ public class UserService {
         userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
         userEntity.setRole(user.getRole());
 
-        entityManager.persist(userEntity);
+        userRepository.save(userEntity);
 
-        if(userRepository.findByUsername("admin").isEmpty()){
-            userEntity.setRole("ROLE_ADMIN");
-            userEntity.setUsername("admin");
-            userEntity.setPassword("pwadmin");
-            entityManager.persist(userEntity);
-        }
     }
-
 }
