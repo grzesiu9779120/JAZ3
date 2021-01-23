@@ -29,8 +29,8 @@ public class RegisterController {
         } else if (user.passwordIsEmpty()) {
             return new ResponseEntity<>("You must provide a password.", HttpStatus.BAD_REQUEST);
         }
-        if (user.getIdRole()==null){
-            user.setIdRole(2);
+        if (user.getRole()==null){
+            user.setRole("ROLE_USER");
         }
         try {
             userService.saveUser(user);

@@ -18,8 +18,8 @@ public class User implements UserDetails {
     private String username;
     @Column(name = "password")
     private String password;
-    @Column(name = "id_role")
-    private Integer idRole;
+    @Column(name = "role")
+    private String role;
 
     public Long getId() {
         return id;
@@ -51,7 +51,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(idRole.toString()));
+        return Collections.singleton(new SimpleGrantedAuthority(role));
     }
 
     @Override
@@ -64,14 +64,13 @@ public class User implements UserDetails {
         return username;
     }
 
-    public void setIdRole(Integer idRole) {
-        this.idRole = idRole;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public Integer getIdRole() {
-        return idRole;
+    public String getRole() {
+        return role;
     }
-
 
     public void setUsername(String username) {
         this.username = username;
@@ -81,9 +80,6 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public void setIdRole(int idRole) {
-        this.idRole = idRole;
-    }
 
     public boolean isEmpty() {
         return (username.isEmpty() && password.isEmpty());
@@ -99,10 +95,11 @@ public class User implements UserDetails {
 
     @Override
     public String toString() {
-        return "UserEntity{" +
+        return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", idRole=" + idRole +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

@@ -28,14 +28,14 @@ public class UserService {
         var userEntity = new User();
         userEntity.setUsername(user.getUsername());
         userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
-        userEntity.setIdRole(user.getIdRole());
+        userEntity.setRole(user.getRole());
 
         entityManager.persist(userEntity);
 
         if(userRepository.findByUsername("admin").isEmpty()){
-            userEntity.setIdRole(1);
+            userEntity.setRole("ROLE_ADMIN");
             userEntity.setUsername("admin");
-            userEntity.setPassword("psadmin");
+            userEntity.setPassword("pwadmin");
             entityManager.persist(userEntity);
         }
     }
